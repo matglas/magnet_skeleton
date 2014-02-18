@@ -10,8 +10,13 @@ function ***MACHINE_NAME***_install() {
   $default_theme = 'basic';
   theme_enable($default_theme);
   variable_set('theme_default', $default_theme);
+
+  // Set admin theme
+  $default_admin_theme = 'seven';
+  theme_enable(array('seven'));
+  variable_set('admin_theme', $default_admin_theme);
   
-  $values = array(
+    $values = array(
     array(
       'module' => 'system',
       'delta' => 'main',
@@ -21,46 +26,29 @@ function ***MACHINE_NAME***_install() {
       'region' => 'content',
       'pages' => '',
       'cache' => -1,
-    ),
-    array(
-      'module' => 'user',
-      'delta' => 'login',
-      'theme' => $default_theme,
-      'status' => 1,
-      'weight' => 0,
-      'region' => 'sidebar_first',
-      'pages' => '',
-      'cache' => -1,
+      'title' => '<none>',
     ),
     array(
       'module' => 'system',
-      'delta' => 'navigation',
+      'delta' => 'main-menu',
       'theme' => $default_theme,
       'status' => 1,
       'weight' => 0,
-      'region' => 'sidebar_first',
+      'region' => 'header',
       'pages' => '',
       'cache' => -1,
+      'title' => '<none>',
     ),
     array(
-      'module' => 'system',
-      'delta' => 'management',
-      'theme' => $default_theme,
-      'status' => 1,
-      'weight' => 1,
-      'region' => 'sidebar_first',
-      'pages' => '',
-      'cache' => -1,
-    ),
-    array(
-      'module' => 'system',
-      'delta' => 'help',
+      'module' => 'local_tasks_blocks',
+      'delta' => 'menu_menu_local_tasks',
       'theme' => $default_theme,
       'status' => 1,
       'weight' => 0,
-      'region' => 'help',
+      'region' => 'edit_sidebar',
       'pages' => '',
       'cache' => -1,
+      'title' => '<none>',
     ),
   );
   $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
