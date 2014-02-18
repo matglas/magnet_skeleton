@@ -13,13 +13,16 @@ projects[kw_itemnames][subdir] = "kraftwagen"
 
 projects[token][version]           = "1.5"
 projects[token][subdir]            = "contrib"
+
 projects[entity][version]          = "1.2"
 projects[entity][subdir]           = "contrib"
+
 projects[ctools][version]          = "1.3"
 projects[ctools][subdir]           = "contrib"
 
 projects[features][version]        = "1.0"
 projects[features][subdir]         = "contrib"
+
 projects[strongarm][version]       = "2.0"
 projects[strongarm][subdir]        = "contrib"
 
@@ -28,5 +31,6 @@ projects[transliteration][subdir]  = "contrib"
 
 projects[pathauto][version]        = "1.2"
 projects[pathauto][subdir]         = "contrib"
+
 projects[views][version]           = "3.7"
 projects[views][subdir]            = "contrib"

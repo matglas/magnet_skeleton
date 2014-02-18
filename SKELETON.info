@@ -4,6 +4,12 @@ core = 7.x
 
 dependencies[] = block
 dependencies[] = dblog
+dependencies[] = file
+dependencies[] = image
+dependencies[] = list
+dependencies[] = menu
+dependencies[] = options
+dependencies[] = toolbar
 
 dependencies[] = kw_manifests
 dependencies[] = features
