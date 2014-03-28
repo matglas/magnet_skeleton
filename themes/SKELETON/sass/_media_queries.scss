@@ -1,0 +1,77 @@
+/* MEDIA QUERIES */
+
+//iPhone Portrait
+
+@media only screen and (min-width: 320px) and (max-width: 460px) {
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+  @media \0screen {
+    img {
+      width: auto; /* for ie 8 */
+    }
+  }
+  .container, .span12, .span8 {
+    max-width: 220px; /* 1col */
+  }
+  .main-content .span9 {
+    width:220px;
+  }
+}
+
+
+@media only screen and (min-width: 461px) and (max-width: 767px) {
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+  @media \0screen {
+    img {
+      width: auto; /* for ie 8 */
+    }
+  }
+  .container, .span12, .span8 {
+    max-width: 460px; /* 2col */
+  }
+  .main-content .span9 {
+    width:460px;
+  }
+}
+
+
+//iPad Portrait
+@media only screen and (min-width: 768px) and (max-width: 939px) {
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+  .container, .span12 {
+    max-width: 700px; /* 3col */
+  }
+  .main-content .span9 {
+    width:460px;
+  }
+}
+
+//Desktop
+@media only screen and (min-width: 940px) {
+  .container {
+    max-width: 940px;
+  }
+}
+@media only screen and (max-width: 939px) {
+}
+
+@media only screen and (min-width: 600px) and (max-width: 939px) {
+
+}
+@media only screen and (max-width: 599px) {
+
+}
+@media only screen and (min-width: 600px) and (max-width: 939px) {
+
+}
+@media only screen and (max-width: 599px) {
+
+}

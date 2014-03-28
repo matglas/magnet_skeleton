@@ -1,0 +1,129 @@
+@charset "UTF-8";
+/* Welcome to Compass.
+* In this file you should write your main styles. (or centralize your imports)
+* Import this file using the following HTML or equivalent:
+* <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font: inherit; font-size: 100%; vertical-align: baseline; }
+
+html { line-height: 1; }
+
+ol, ul { list-style: none; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+caption, th, td { text-align: left; font-weight: normal; vertical-align: middle; }
+
+q, blockquote { quotes: none; }
+q:before, q:after, blockquote:before, blockquote:after { content: ""; content: none; }
+
+a img { border: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }
+
+/*!
+ * Bootstrap v2.3.1
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ */
+.clearfix { *zoom: 1; }
+
+.clearfix:before, .clearfix:after { display: table; content: ""; line-height: 0; }
+
+.clearfix:after { clear: both; }
+
+.hide-text { font: 0/0 a; color: transparent; text-shadow: none; background-color: transparent; border: 0; }
+
+.input-block-level { display: block; width: 100%; min-height: 30px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+.row { margin-left: -20px; *zoom: 1; }
+
+.row:before, .row:after { display: table; content: ""; line-height: 0; }
+
+.row:after { clear: both; }
+
+[class*="span"] { float: left; min-height: 1px; margin-left: 20px; }
+
+.span12 { width: 940px; }
+
+.span11 { width: 860px; }
+
+.span10 { width: 780px; }
+
+.span9 { width: 700px; }
+
+.span8 { width: 620px; }
+
+.span7 { width: 540px; }
+
+.span6 { width: 460px; }
+
+.span5 { width: 380px; }
+
+.span4 { width: 300px; }
+
+.span3 { width: 220px; }
+
+.span2 { width: 140px; }
+
+.span1 { width: 60px; }
+
+.offset12 { margin-left: 980px; }
+
+.offset11 { margin-left: 900px; }
+
+.offset10 { margin-left: 820px; }
+
+.offset9 { margin-left: 740px; }
+
+.offset8 { margin-left: 660px; }
+
+.offset7 { margin-left: 580px; }
+
+.offset6 { margin-left: 500px; }
+
+.offset5 { margin-left: 420px; }
+
+.offset4 { margin-left: 340px; }
+
+.offset3 { margin-left: 260px; }
+
+.offset2 { margin-left: 180px; }
+
+.offset1 { margin-left: 100px; }
+
+[class*="span"].hide, .row-fluid [class*="span"].hide { display: none; }
+
+[class*="span"].pull-right, .row-fluid [class*="span"].pull-right { float: right; }
+
+input { max-width: 100%; }
+
+/* Edit Sidebar --------------------------------------------------------------*/
+#edit-sidebar { padding: 20px; width: 250px; background: rgba(231, 231, 231, 0.8); border: 1px solid rgba(51, 51, 51, 0.21); position: fixed !important; z-index: 88; }
+
+#edit-sidebar ul li a:hover { color: #343434; }
+
+#edit-sidebar h2 { color: #343434; font-size: 18px; text-transform: uppercase; margin-bottom: 10px; }
+
+#edit-sidebar .handle span { color: white; font-size: 16px; position: absolute; right: 15px; z-index: 1001; margin-top: 40px; text-indent: 0 !important; }
+
+#edit-sidebar .handle { background-color: #FF6703; width: 40px; height: 100px; text-indent: 0 !important; cursor: pointer; }
+
+#edit-sidebar .handle span::after { content: '»'; color: #FFF; text-indent: 0 !important; }
+
+#edit-sidebar.open .handle span::after { content: '«' !important; }
+
+/* MEDIA QUERIES */
+@media only screen and (min-width: 320px) and (max-width: 460px) { img { max-width: 100%; height: auto; }
+  .container, .span12, .span8 { max-width: 220px; /* 1col */ }
+  .main-content .span9 { width: 220px; } }
+@media only screen and (min-width: 461px) and (max-width: 767px) { img { max-width: 100%; height: auto; }
+  .container, .span12, .span8 { max-width: 460px; /* 2col */ }
+  .main-content .span9 { width: 460px; } }
+@media only screen and (min-width: 768px) and (max-width: 939px) { img { max-width: 100%; height: auto; }
+  .container, .span12 { max-width: 700px; /* 3col */ }
+  .main-content .span9 { width: 460px; } }
+@media only screen and (min-width: 940px) { .container { max-width: 940px; } }

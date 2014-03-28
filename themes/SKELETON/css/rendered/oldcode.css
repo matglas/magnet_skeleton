@@ -1,0 +1,38 @@
+@media only screen and (min-width: 955px) { #wrapper { width: 955px; }
+  .module.half { float: left; width: 175px; margin-right: 20px; -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */ -moz-box-sizing: border-box; /* Firefox, other Gecko */ box-sizing: border-box; /* Opera/IE 8+ */ }
+  .module.half.second { padding-right: 0; margin: 0; }
+  .title.five { display: block; } }
+@media only screen and (min-width: 760px) and (max-width: 954px) { #wrapper { max-width: 760px; }
+  .col-2-5.first { width: 175px; }
+  .title.four { display: block; } }
+@media only screen and (min-width: 565px) and (max-width: 759px) { #wrapper { max-width: 565px; }
+  .module.half { float: left; width: 175px; margin-right: 20px; }
+  .module.half.second { padding-right: 0; margin: 0; }
+  .col-1-5.three, .col-1-5.four { margin-top: 20px; }
+  .col-1-5.two { padding-right: 0; }
+  .col-1-5.four { width: auto; /* 370px */ }
+  .col-1-5.four .module.half { float: left; width: 175px; margin-right: 20px; -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */ -moz-box-sizing: border-box; /* Firefox, other Gecko */ box-sizing: border-box; /* Opera/IE 8+ */ }
+  .col-1-5.four .module.half.second { padding-right: 0; margin: 0; }
+  .title.three { display: block; } }
+/*  Show only two */
+@media only screen and (min-width: 1px) and (max-width: 564px) { #wrapper { width: 370px; }
+  .module.half { float: left; width: 175px; margin-right: 20px; -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */ -moz-box-sizing: border-box; /* Firefox, other Gecko */ box-sizing: border-box; /* Opera/IE 8+ */ }
+  .module.half.second { padding-right: 0; margin: 0; }
+  .col-1-5.two { margin-top: 20px; }
+  .col-1-5.three { padding-right: 0; margin-top: 20px; }
+  .col-1-5.four { margin-top: 20px; width: 370px; }
+  .col-1-5.four .module.half { float: left; width: 175px; margin-right: 20px; -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */ -moz-box-sizing: border-box; /* Firefox, other Gecko */ box-sizing: border-box; /* Opera/IE 8+ */ }
+  .col-1-5.four .module.half.second { padding-right: 0; margin: 0; }
+  .title.two { display: block; } }
+.grid { background: white; margin: 0 0 20px 0; }
+.grid:after { /* Or @extend clearfix */ content: ""; display: table; clear: both; }
+
+.row { width: 100%; max-width: 980px; min-width: 320px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
+
+.columns { float: left; padding-right: 20px; }
+.columns:last-of-type { padding-right: 0; }
+
+.columns.three { width: 220px; }
+.columns.six { width: 460px; }
+.columns.nine { width: 700px; }
+.columns.twelve { width: 940px; }

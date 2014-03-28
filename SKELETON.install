@@ -7,7 +7,7 @@
  */
 function ***MACHINE_NAME***_install() {
   // Enable some standard blocks.
-  $default_theme = 'basic';
+  $default_theme = '***MACHINE_NAME***';
   theme_enable($default_theme);
   variable_set('theme_default', $default_theme);
 

@@ -1,0 +1,13 @@
+name = ***HUMAN_NAME***
+description = Theme for ***HUMAN_NAME***
+engine = phptemplate
+core = 7.x
+php = 5.2
+regions[header] = header
+regions[content] = Main Content
+regions[footer] = Footer
+regions[edit_sidebar] = Edit Sidebar
+scripts[] = js/script.js
+stylesheets[all][] = css/bootstrap-forms.min.css
+stylesheets[all][] = css/bootstrap-alerts.css
+stylesheets[all][] = css/rendered/style.css
