@@ -5,11 +5,6 @@
  */
 function ***MACHINE_NAME***_config_kw_manifests_info() {
 
-  $manifests['production_analytics_manifest'] = array(
-    'callback' => '***MACHINE_NAME***_config_manifest_production_analytics_manifest',
-    'require environment' => array('production')
-  );
-
   $manifests['development_error_manifest'] = array(
     'callback' => '***MACHINE_NAME***_config_manifest_development_error_manifest',
     'require environment' => array('development', 'staging')
@@ -27,11 +22,10 @@ function ***MACHINE_NAME***_config_kw_manifests_info() {
     'callback' => '***MACHINE_NAME***_config_manifest_production_cache_manifest',
     'require environment' => array('production')
   );
-  $manifests['development_enmail_manifest'] = array(
+  $manifests['development_email_manifest'] = array(
     'callback' => '***MACHINE_NAME***_config_manifest_development_email_manifest',
     'require environment' => array('development', 'staging')
   );
-
   $manifests['production_email_manifest'] = array(
     'callback' => '***MACHINE_NAME***_config_manifest_production_email_manifest',
     'require environment' => array('production')
@@ -50,6 +44,8 @@ function ***MACHINE_NAME***_config_kw_manifests_info() {
 
 /**
  * Callback for manifest development_email_manifest
+ * 
+ * Set a default e-mail adres for development environments.
  *
  * @see ***MACHINE_NAME***_config_kw_manifests_info().
  */
@@ -61,6 +57,8 @@ function ***MACHINE_NAME***_config_manifest_development_email_manifest() {
 /**
  * Callback for manifest production_email_manifest
  *
+ * Enforce a e-mail adres for the production environment.
+ * 
  * @see ***MACHINE_NAME***_config_kw_manifests_info().
  */
 function ***MACHINE_NAME***_config_manifest_production_email_manifest() {
@@ -71,6 +69,8 @@ function ***MACHINE_NAME***_config_manifest_production_email_manifest() {
 
 /**
  * Callback for manifest development_error_manifest
+ * 
+ * Enforce that error display is active.
  *
  * @see ***MACHINE_NAME***_config_kw_manifests_info().
  */
@@ -83,6 +83,8 @@ function ***MACHINE_NAME***_config_manifest_development_error_manifest() {
 /**
  * Callback for manifest production_error_manifest
  *
+ * Enforce that error display is disabled.
+ * 
  * @see ***MACHINE_NAME***_config_kw_manifests_info().
  */
 function ***MACHINE_NAME***_config_manifest_production_error_manifest() {
@@ -93,6 +95,8 @@ function ***MACHINE_NAME***_config_manifest_production_error_manifest() {
 
 /**
  * Callback for manifest development_cache_manifest.
+ * 
+ * Enforce that cache is disabled.
  *
  * @see ***MACHINE_NAME***_config_kw_manifests_info().
  */
@@ -109,6 +113,8 @@ function ***MACHINE_NAME***_config_manifest_development_cache_manifest() {
 
 /**
  * Callback for manifest production_cache_manifest
+ * 
+ * Enforce that cache is enabled.
  *
  * @see ***MACHINE_NAME***_config_kw_manifests_info().
  */
@@ -124,33 +130,31 @@ function ***MACHINE_NAME***_config_manifest_production_cache_manifest() {
 }
 
 /**
- * Callback for manifest production_cache_manifest
- *
- * @see ***MACHINE_NAME***_config_kw_manifests_info().
- */
-function ***MACHINE_NAME***_config_manifest_production_analytics_manifest() {
-  variable_set('googleanalytics_account', 'UA-');
-
-  return TRUE;
-}
-
-/**
  * Callback for manifest ***MACHINE_NAME***_config_manifest_settings
  *
+ * Enforce the setting of different settings.
+ * 
  * @see ***MACHINE_NAME***_config_kw_manifests_info().
  */
 function ***MACHINE_NAME***_config_manifest_settings() {
+
+  // Force site_name to ***HUMAN_NAME*** when Site-Install is currently the name.
   if(variable_get('site_name', 'Site-Install') == 'Site-Install') {
     variable_set('site_name', '***HUMAN_NAME***');
   }
+
+  // Enable the admin theme on node edit.
   variable_set('node_admin_theme', TRUE);
 
+  // Enable the display of the master display on views editing.
   variable_set('views_ui_show_master_display', TRUE);
 
+  // Enforce the default admin theme.
   $default_admin_theme = 'seven';
   theme_enable(array('seven'));
   variable_set('admin_theme', $default_admin_theme);
 
+  // Remove all blocks from region on the admin theme.
   db_update('block')
     ->fields(array(
                   'region' => '-1',
@@ -171,6 +175,13 @@ function ***MACHINE_NAME***_config_manifest_settings() {
 
 }
 
+/**
+ * Callback for ***MACHINE_NAME***_config_manifest_blocks
+ * 
+ * Enforce the positioning of blocks.
+ * 
+ * @see ***MACHINE_NAME***_config_kw_manifests_info().
+ */
 function ***MACHINE_NAME***_config_manifest_blocks() {
   $default_theme = variable_get('theme_default');
   db_update('block')
@@ -179,6 +190,8 @@ function ***MACHINE_NAME***_config_manifest_blocks() {
              ))
     ->condition('theme', $default_theme, '=')
     ->execute();
+
+  // These blocks are set.  
   $values = array(
     array(
       'module' => 'system',
@@ -203,7 +216,11 @@ function ***MACHINE_NAME***_config_manifest_blocks() {
       'title' => '<none>',
     ),
   );
+
+  // Create a query.
   $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache', 'title'));
+
+  // Run the query for every block.
   foreach ($values as $record) {
     $exists = db_query('SELECT 1 FROM {block} WHERE theme = :theme AND module = :module AND delta = :delta', array(':theme' => $record['theme'], ':module' => $record['module'], ':delta' => $record['delta']))->fetchField();
     if($exists) {
