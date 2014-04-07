@@ -1,0 +1,116 @@
+<?php
+
+/**
+ * Set or get if the current page is panelized.
+ */
+function ***MACHINE_NAME***_panels_page_is_panelized($is_panelized = NULL) {
+  static $is_page_panelized = FALSE;
+
+  if (isset($is_panelized) || $is_panelized === TRUE) {
+    $is_page_panelized = $is_panelized;
+  }
+
+  return $is_page_panelized;
+}
+
+/**
+ * Implements hook_preprocess_page().
+ *
+ * Preprocess the page vars.
+ */
+function ***MACHINE_NAME***_panels_preprocess_page(&$vars) {
+  $vars['is_panelized'] = ***MACHINE_NAME***_panels_page_is_panelized();
+  $vars['is_panel'] = ***MACHINE_NAME***_panels_page_is_panel_page();
+}
+
+function ***MACHINE_NAME***_panels_entity_view_alter(&$build, $entity_type) {
+
+  // Check if the current entity is panelized and set our static information.
+  $is_panelized = ***MACHINE_NAME***_panels_is_entity_panelized($build, $entity_type);
+  if (!***MACHINE_NAME***_panels_page_is_panelized() || $is_panelized) {
+    ***MACHINE_NAME***_panels_page_is_panelized($is_panelized);
+  }
+
+  return;
+}
+
+/**
+ * Callback used by entity_view_alter() to check if the entity is panelized.
+ *
+ * This method is largely based on panelizer_entity_view_alter().
+ */
+function ***MACHINE_NAME***_panels_is_entity_panelized($build, $entity_type) {
+
+  // Check parameters.
+  if (!isset($build) && !isset($entity_type)) {
+    return FALSE;
+  }
+
+  // Prepare variables.
+  $handler = panelizer_entity_plugin_get_handler($entity_type);
+  if (!$handler) {
+    return FALSE;
+  }
+
+  $entity = $handler->get_entity_view_entity($build);
+
+  // Safety check in case we can't find the entity.
+  if (!$entity) {
+    return FALSE;
+  }
+
+  list($entity_id, $revision_id, $bundle) = entity_extract_ids($entity_type, $entity);
+
+  // If the requested view mode does not exist, rendering will fall back
+  // to 'default' and we should check that one instead.
+  $view_mode = $build['#view_mode'];
+
+  // Test to see if this view mode is actually panelizable at all.
+  if (!isset($handler->plugin['view modes'][$view_mode]) || (empty($handler->plugin['view modes'][$view_mode]['custom settings']) && empty($handler->plugin['view mode status'][$bundle][$view_mode]))) {
+    $view_mode = 'default';
+  }
+
+  // Make sure the bundle + view mode is actually panelized!
+  if (!$handler->is_panelized($bundle . '.' . $view_mode)) {
+    return FALSE;
+  }
+
+  return TRUE;
+}
+
+function ***MACHINE_NAME***_panels_preprocess_panels_pane(&$vars){
+  ***MACHINE_NAME***_panels_page_is_panel_page(TRUE);
+}
+
+/**
+ * Set or get if the current page is a panel page.
+ */
+function ***MACHINE_NAME***_panels_page_is_panel_page($is_panel_page = NULL) {
+  static $is_page_panel_page = FALSE;
+
+  if (isset($is_panel_page) || $is_panel_page === TRUE) {
+    $is_page_panel_page = $is_panel_page;
+  }
+
+  return $is_page_panel_page;
+}
+
+/**
+ * Render callback.
+ *
+ * @ingroup themeable
+ */
+function ***MACHINE_NAME***_panels_naked_style_render_region($vars) {
+  ***MACHINE_NAME***_panels_page_is_panel_page(TRUE);
+  return implode($vars['panes']);
+}
+
+/**
+ * Render callback.
+ *
+ * @ingroup themeable
+ */
+function ***MACHINE_NAME***_panels_naked_style_render_pane($vars) {
+  ***MACHINE_NAME***_panels_page_is_panel_page(TRUE);
+  return render($vars['content']->content);
+}

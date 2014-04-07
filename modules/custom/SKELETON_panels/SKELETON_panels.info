@@ -1,0 +1,4 @@
+name = ***HUMAN_NAME*** Panels
+description = Panels module for ***HUMAN_NAME***
+package = ***HUMAN_NAME***
+core = 7.x
