@@ -5,16 +5,18 @@ core = 7.x
 dependencies[] = block
 dependencies[] = dblog
 dependencies[] = file
-dependencies[] = image
-dependencies[] = list
 dependencies[] = menu
-dependencies[] = options
 dependencies[] = toolbar
+dependencies[] = path
+dependencies[] = strongarm
+dependencies[] = ***MACHINE_NAME***_core
 
 dependencies[] = kw_manifests
 dependencies[] = features
 
 env_dependencies[development][] = field_ui
-env_dependencies[development][] = strongarm
+env_dependencies[development][] = views_ui
+env_dependencies[development][] = devel
+env_dependencies[development][] = diff
 
 files[] = ***MACHINE_NAME***.profile

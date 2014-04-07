@@ -3,3 +3,25 @@
  * @file
  * Install file for ***MACHINE_NAME***_core.
  */
+
+function ***MACHINE_NAME***_core_install() {
+
+  // Install roles.
+  ***MACHINE_NAME***_core_roles();
+}
+
+/**
+ * Install default roles.
+ */
+function ***MACHINE_NAME***_core_roles() {
+
+  // Create a admin role.
+  $role = new StdClass();
+  $role->name = 'administrator';
+  user_role_save($role);
+
+  // Create a site admin role.
+  $role = new StdClass();
+  $role->name = 'site administrator';
+  user_role_save($role);
+}
