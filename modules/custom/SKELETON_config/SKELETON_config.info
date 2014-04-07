@@ -1,0 +1,6 @@
+name = ***HUMAN_NAME*** Configuration
+description = Main module for ***HUMAN_NAME***
+package = ***HUMAN_NAME***
+core = 7.x
+
+dependencies[] = ***MACHINE_NAME***_core

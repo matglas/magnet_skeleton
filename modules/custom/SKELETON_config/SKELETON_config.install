@@ -1,0 +1,221 @@
+<?php
+
+/**
+ * Implements hook_kw_manifests_info().
+ */
+function ***MACHINE_NAME***_config_kw_manifests_info() {
+
+  $manifests['production_analytics_manifest'] = array(
+    'callback' => '***MACHINE_NAME***_config_manifest_production_analytics_manifest',
+    'require environment' => array('production')
+  );
+
+  $manifests['development_error_manifest'] = array(
+    'callback' => '***MACHINE_NAME***_config_manifest_development_error_manifest',
+    'require environment' => array('development', 'staging')
+  );
+  $manifests['production_error_manifest'] = array(
+    'callback' => '***MACHINE_NAME***_config_manifest_production_error_manifest',
+    'require environment' => array('production')
+  );
+
+  $manifests['development_cache_manifest'] = array(
+    'callback' => '***MACHINE_NAME***_config_manifest_development_cache_manifest',
+    'require environment' => array('development', 'staging')
+  );
+  $manifests['production_cache_manifest'] = array(
+    'callback' => '***MACHINE_NAME***_config_manifest_production_cache_manifest',
+    'require environment' => array('production')
+  );
+  $manifests['development_enmail_manifest'] = array(
+    'callback' => '***MACHINE_NAME***_config_manifest_development_email_manifest',
+    'require environment' => array('development', 'staging')
+  );
+
+  $manifests['production_email_manifest'] = array(
+    'callback' => '***MACHINE_NAME***_config_manifest_production_email_manifest',
+    'require environment' => array('production')
+  );
+  $manifests['***MACHINE_NAME***_config_manifest_settings'] = array(
+    'callback' => '***MACHINE_NAME***_config_manifest_settings',
+  );
+
+  $manifests['***MACHINE_NAME***_config_manifest_blocks'] = array(
+    'callback' => '***MACHINE_NAME***_config_manifest_blocks',
+  );
+
+	return $manifests;
+}
+
+
+/**
+ * Callback for manifest development_email_manifest
+ *
+ * @see ***MACHINE_NAME***_config_kw_manifests_info().
+ */
+function ***MACHINE_NAME***_config_manifest_development_email_manifest() {
+  variable_set('site_mail', 'info+***MACHINE_NAME***@vdmi.nl');
+  return TRUE;
+}
+
+/**
+ * Callback for manifest production_email_manifest
+ *
+ * @see ***MACHINE_NAME***_config_kw_manifests_info().
+ */
+function ***MACHINE_NAME***_config_manifest_production_email_manifest() {
+  variable_set('site_mail', 'info+***MACHINE_NAME***@vdmi.nl');
+  return TRUE;
+}
+
+
+/**
+ * Callback for manifest development_error_manifest
+ *
+ * @see ***MACHINE_NAME***_config_kw_manifests_info().
+ */
+function ***MACHINE_NAME***_config_manifest_development_error_manifest() {
+  variable_set('error_level', '2');
+
+  return TRUE;
+}
+
+/**
+ * Callback for manifest production_error_manifest
+ *
+ * @see ***MACHINE_NAME***_config_kw_manifests_info().
+ */
+function ***MACHINE_NAME***_config_manifest_production_error_manifest() {
+  variable_set('error_level', '0');
+
+  return TRUE;
+}
+
+/**
+ * Callback for manifest development_cache_manifest.
+ *
+ * @see ***MACHINE_NAME***_config_kw_manifests_info().
+ */
+function ***MACHINE_NAME***_config_manifest_development_cache_manifest() {
+
+  variable_set('cache', FALSE);
+  variable_set('block_cache', FALSE);
+  variable_set('page_compression', FALSE);
+  variable_set('preprocess_css', FALSE);
+  variable_set('preprocess_js', FALSE);
+
+  return TRUE;
+}
+
+/**
+ * Callback for manifest production_cache_manifest
+ *
+ * @see ***MACHINE_NAME***_config_kw_manifests_info().
+ */
+function ***MACHINE_NAME***_config_manifest_production_cache_manifest() {
+
+  variable_set('cache', TRUE);
+  variable_set('block_cache', TRUE);
+  variable_set('page_compression', TRUE);
+  variable_set('preprocess_css', TRUE);
+  variable_set('preprocess_js', TRUE);
+
+  return TRUE;
+}
+
+/**
+ * Callback for manifest production_cache_manifest
+ *
+ * @see ***MACHINE_NAME***_config_kw_manifests_info().
+ */
+function ***MACHINE_NAME***_config_manifest_production_analytics_manifest() {
+  variable_set('googleanalytics_account', 'UA-');
+
+  return TRUE;
+}
+
+/**
+ * Callback for manifest ***MACHINE_NAME***_config_manifest_settings
+ *
+ * @see ***MACHINE_NAME***_config_kw_manifests_info().
+ */
+function ***MACHINE_NAME***_config_manifest_settings() {
+  if(variable_get('site_name', 'Site-Install') == 'Site-Install') {
+    variable_set('site_name', '***HUMAN_NAME***');
+  }
+  variable_set('node_admin_theme', TRUE);
+
+  variable_set('views_ui_show_master_display', TRUE);
+
+  $default_admin_theme = 'seven';
+  theme_enable(array('seven'));
+  variable_set('admin_theme', $default_admin_theme);
+
+  db_update('block')
+    ->fields(array(
+                  'region' => '-1',
+             ))
+    ->condition('theme', $default_admin_theme, '=')
+    ->execute();
+
+  db_update('block')
+    ->fields(array(
+                  'status' => 1,
+                  'title' => '<none>',
+                  'region' => 'content',
+             ))
+    ->condition('theme', $default_admin_theme, '=')
+    ->condition('module', 'system', '=')
+    ->condition('delta', 'main', '=')
+    ->execute();
+
+}
+
+function ***MACHINE_NAME***_config_manifest_blocks() {
+  $default_theme = variable_get('theme_default');
+  db_update('block')
+    ->fields(array(
+                  'region' => '-1',
+             ))
+    ->condition('theme', $default_theme, '=')
+    ->execute();
+  $values = array(
+    array(
+      'module' => 'system',
+      'delta' => 'main',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'content',
+      'pages' => '',
+      'cache' => -1,
+      'title' => '<none>',
+    ),
+    array(
+      'module' => 'local_tasks_blocks',
+      'delta' => 'menu_menu_local_tasks',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'edit_sidebar',
+      'pages' => '',
+      'cache' => -1,
+      'title' => '<none>',
+    ),
+  );
+  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache', 'title'));
+  foreach ($values as $record) {
+    $exists = db_query('SELECT 1 FROM {block} WHERE theme = :theme AND module = :module AND delta = :delta', array(':theme' => $record['theme'], ':module' => $record['module'], ':delta' => $record['delta']))->fetchField();
+    if($exists) {
+      db_update('block')
+        ->fields($record)
+        ->condition('theme', $record['theme'])
+        ->condition('module', $record['module'])
+        ->condition('delta', $record['delta'])
+        ->execute();
+    } else {
+      $query->values($record);
+    }
+  }
+  $query->execute();
+}

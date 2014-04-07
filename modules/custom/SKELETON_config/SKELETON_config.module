@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function ***MACHINE_NAME***_config_menu() {
+  $items = array();
+  // Page for ***HUMAN_NAME*** settings
+  $items['admin/config/system/***MACHINE_NAME***-admin'] = array(
+    'title' => '***HUMAN_NAME*** settings',
+    'description' => 'Settings for ***HUMAN_NAME***',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('***MACHINE_NAME***_config_admin_settings'),
+    'access arguments' => array('edit ***MACHINE_NAME*** settings'),
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function ***MACHINE_NAME***_config_permission() {
+  return array(
+    'edit ***MACHINE_NAME*** settings' => array(
+      'title' => t('Edit ***HUMAN_NAME*** Settings'),
+      'description' => t('Is able to edit the ***HUMAN_NAME*** settings'),
+    ),
+  );
+}
+/*
+* Admin settings page, uses a hook to get settings fields
+*/
+function ***MACHINE_NAME***_config_admin_settings($form, &$form_state) {
+  // Run a hook to fetch all ***HUMAN_NAME*** setting parts
+  $forms = module_invoke_all('***MACHINE_NAME***_config_settings_fields', $form, $form_state);
+  // Loop through results and put in form
+  foreach ($forms as $key => $hookform) {
+    $form[$key] = $hookform;
+    $form[$key]['#collapsible'] = TRUE;
+    $form[$key]['#collapsed'] = TRUE;
+  }
+  $form['#submit'][] = '***MACHINE_NAME***_config_admin_settings_submit';
+  $form['#validate'][] = '***MACHINE_NAME***_config_admin_settings_validate';
+  // Return as settings form
+  return system_settings_form($form);
+}
+function ***MACHINE_NAME***_config_admin_settings_submit($form, &$form_state) {
+  $return = module_invoke_all('***MACHINE_NAME***_config_settings_fields_submit', $form, $form_state);
+  if ($return) {
+    $form_state = $return;
+  }
+}
+function ***MACHINE_NAME***_config_admin_settings_validate($form, &$form_state) {
+  $return = module_invoke_all('***MACHINE_NAME***_config_settings_fields_validate', $form, $form_state);
+  if ($return) {
+    $form_state = $return;
+  }
+}
