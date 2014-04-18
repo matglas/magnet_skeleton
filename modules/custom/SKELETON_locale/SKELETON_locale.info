@@ -1,0 +1,7 @@
+name = ***HUMAN_NAME*** Locale
+description = Translation for nodes.
+core = 7.x
+package = IMCD
+
+dependencies[] = locale
+dependencies[] = translation

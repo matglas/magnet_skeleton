@@ -10,6 +10,7 @@ dependencies[] = toolbar
 dependencies[] = path
 dependencies[] = strongarm
 dependencies[] = ***MACHINE_NAME***_core
+dependencies[] = ***MACHINE_NAME***_locale
 
 dependencies[] = kw_manifests
 dependencies[] = features
