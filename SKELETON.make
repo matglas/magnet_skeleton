@@ -101,3 +101,5 @@ projects[diff][subdir]              = "contrib"
 
 libraries[ckeditor][download][type] = "file"
 libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.3/ckeditor_4.3_full.zip
+
+include[***MACHINE_NAME***_locale] = modules/custom/***MACHINE_NAME***_locale/***MACHINE_NAME***_locale.make
