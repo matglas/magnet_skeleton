@@ -11,6 +11,11 @@ projects[kw_itemnames][download][type]  = "git"
 projects[kw_itemnames][download][url]   = "git://github.com/kraftwagen/kw-itemnames.git"
 projects[kw_itemnames][subdir]          = "kraftwagen"
 
+projects[magnet_admin][type]            = "module"
+projects[magnet_admin][download][type]  = "git"
+projects[magnet_admin][download][url]   = "https://github.com/matglas/magnet_admin.git"
+projects[magnet_admin][subdir]          = "magnet"
+
 projects[token][version]            = "1.5"
 projects[token][subdir]             = "contrib"
 

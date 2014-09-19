@@ -8,11 +8,11 @@ dependencies[] = file
 dependencies[] = menu
 dependencies[] = toolbar
 dependencies[] = path
-dependencies[] = strongarm
 dependencies[] = ***MACHINE_NAME***_core
 
+dependencies[] = magnet_admin
+
 dependencies[] = kw_manifests
-dependencies[] = features
 
 env_dependencies[development][] = field_ui
 env_dependencies[development][] = views_ui
