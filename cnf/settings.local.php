@@ -1,8 +1,12 @@
 <?php
+/**
+ * @file
+ * Local settings file.
+ */
 
-$databases = array (
-  'default' => array (
-    'default' => array (
+$databases = array(
+  'default' => array(
+    'default' => array(
       'database' => 'DATABASE_NAME',
       'username' => 'DATABASE_USERNAME',
       'password' => 'DATABASE_PASSWORD',
