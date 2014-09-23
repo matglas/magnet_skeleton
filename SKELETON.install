@@ -8,15 +8,15 @@
 function ***MACHINE_NAME***_install() {
   // Enable some standard blocks.
   $default_theme = '***MACHINE_NAME***';
-  theme_enable($default_theme);
+  theme_enable(array('***MACHINE_NAME***'));
   variable_set('theme_default', $default_theme);
 
-  // Set admin theme
+  // Set admin theme.
   $default_admin_theme = 'seven';
   theme_enable(array('seven'));
   variable_set('admin_theme', $default_admin_theme);
-  
-    $values = array(
+
+  $values = array(
     array(
       'module' => 'system',
       'delta' => 'main',
@@ -51,7 +51,19 @@ function ***MACHINE_NAME***_install() {
       'title' => '<none>',
     ),
   );
-  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
+  $query = db_insert('block')->fields(
+    array(
+      'module',
+      'delta',
+      'theme',
+      'status',
+      'weight',
+      'region',
+      'pages',
+      'cache',
+      'title'
+    )
+  );
   foreach ($values as $record) {
     $query->values($record);
   }
