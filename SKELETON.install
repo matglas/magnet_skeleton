@@ -17,6 +17,8 @@ function ***MACHINE_NAME***_install() {
   variable_set('admin_theme', $default_admin_theme);
 
   $values = array(
+
+    // Enable the system main content.
     array(
       'module' => 'system',
       'delta' => 'main',
@@ -28,6 +30,8 @@ function ***MACHINE_NAME***_install() {
       'cache' => -1,
       'title' => '<none>',
     ),
+
+    // Enable the systems main menu.
     array(
       'module' => 'system',
       'delta' => 'main-menu',
@@ -39,6 +43,8 @@ function ***MACHINE_NAME***_install() {
       'cache' => -1,
       'title' => '<none>',
     ),
+
+    // Enable the local tasks block.
     array(
       'module' => 'local_tasks_blocks',
       'delta' => 'menu_menu_local_tasks',
@@ -46,6 +52,19 @@ function ***MACHINE_NAME***_install() {
       'status' => 1,
       'weight' => 0,
       'region' => 'edit_sidebar',
+      'pages' => '',
+      'cache' => -1,
+      'title' => '<none>',
+    ),
+
+    // Disable system help block.
+    array(
+      'module' => 'system',
+      'delta' => 'help',
+      'theme' => $default_theme,
+      'status' => 0,
+      'weight' => 0,
+      'region' => '',
       'pages' => '',
       'cache' => -1,
       'title' => '<none>',
