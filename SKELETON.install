@@ -4,6 +4,8 @@
  * Implements hook_install().
  *
  * Perform actions to set up the site for this profile.
+ * 
+ * @TODO The block setup provide a problem on install. Debug and fix.
  */
 function ***MACHINE_NAME***_install() {
   // Enable some standard blocks.
