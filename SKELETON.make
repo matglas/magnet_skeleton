@@ -79,7 +79,7 @@ projects[jquery_update][subdir]     = "contrib"
 projects[date][version]             = "2.8"
 projects[date][subdir]              = "contrib"
 
-projects[google_analytics][version] = "1.4"
+projects[google_analytics][version] = "2.1"
 projects[google_analytics][subdir]  = "contrib"
 
 projects[backup_migrate][version]   = "2.8"
