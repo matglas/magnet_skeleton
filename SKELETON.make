@@ -22,10 +22,10 @@ projects[token][subdir]             = "contrib"
 projects[entity][version]           = "1.2"
 projects[entity][subdir]            = "contrib"
 
-projects[ctools][version]           = "1.4"
+projects[ctools][version]           = "1.7"
 projects[ctools][subdir]            = "contrib"
 
-projects[features][version]         = "2.0"
+projects[features][version]         = "2.5"
 projects[features][subdir]          = "contrib"
 
 projects[strongarm][version]        = "2.0"
