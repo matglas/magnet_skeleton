@@ -6,6 +6,10 @@ modules/contrib/*
 modules/kraftwagen/*
 !modules/kraftwagen/README.md
 
+# ignore libraries
+libraries/*
+!libraries/README.md
+
 # OS specific shit
 .DS_Store
 Thumbs.db
