@@ -11,6 +11,11 @@ projects[kw_itemnames][download][type]  = "git"
 projects[kw_itemnames][download][url]   = "git://github.com/kraftwagen/kw-itemnames.git"
 projects[kw_itemnames][subdir]          = "kraftwagen"
 
+projects[magnet_core][type]            = "module"
+projects[magnet_core][download][type]  = "git"
+projects[magnet_core][download][url]   = "https://github.com/matglas/magnet_core.git"
+projects[magnet_core][subdir]          = "magnet"
+
 projects[magnet_admin][type]            = "module"
 projects[magnet_admin][download][type]  = "git"
 projects[magnet_admin][download][url]   = "https://github.com/matglas/magnet_admin.git"
@@ -63,9 +68,6 @@ projects[field_group][subdir]       = "contrib"
 
 projects[linkit][version]           = "2.7"
 projects[linkit][subdir]            = "contrib"
-
-projects[module_filter][version]    = "1.8"
-projects[module_filter][subdir]     = "contrib"
 
 projects[xmlsitemap][version]       = "2.2"
 projects[xmlsitemap][subdir]        = "contrib"
